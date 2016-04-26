@@ -6,7 +6,7 @@ import praw
 def RedditData():
 
 
-    query = "cs+374"
+    query = "cs225"
     time = "year"
 
     r = praw.Reddit(user_agent='my_cool_application')
