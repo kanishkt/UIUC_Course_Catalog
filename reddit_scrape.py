@@ -3,12 +3,7 @@ import json
 import praw
 
 
-def RedditData():
-
-
-    query = "cs225"
-    time = "year"
-
+def RedditData(query, time):
     r = praw.Reddit(user_agent='my_cool_application')
     submissions = r.search(query, subreddit="uiuc", sort=None, syntax=None, period=time)
     subreddit_posts = list()
