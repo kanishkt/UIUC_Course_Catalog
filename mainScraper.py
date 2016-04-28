@@ -35,7 +35,6 @@ def koofers(class_):
     print(stats)
     print ""
 
-
     url = 'https://www.koofers.com/university-of-illinois-urbana-champaign-uiuc/' + college + '/' + className + '/professors'
     r = urllib.urlopen(url).read()
     soup = BeautifulSoup(r, "html.parser")
