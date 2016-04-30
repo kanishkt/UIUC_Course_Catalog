@@ -33,12 +33,12 @@ coursesURL = "https://courses.illinois.edu/schedule/2016/fall/CS"
 coursesPage = urllib2.urlopen(coursesURL)
 coursesSoup = BeautifulSoup(coursesPage)
 
-print coursesSoup.prettify()
-print coursesSoup.title
-print coursesSoup.title.string
+# print coursesSoup.prettify()
+# print coursesSoup.title
+# print coursesSoup.title.string
 
 coursesTable = coursesSoup.find('table', {"class":"table table-striped table-bordered table-condensed"})
-print coursesTable
+# print coursesTable
 coursesNumList = []
 coursesNameList = []
 for coursesRow in coursesTable.findAll("tr"):
@@ -48,7 +48,9 @@ for coursesRow in coursesTable.findAll("tr"):
 		coursesNumList.append(str(coursesCells[0].find(text = True).strip()))
 		coursesNameList.append(str(coursesStates[0].find(text = True).strip()))
 
-print coursesNumList
-print coursesNameList
-
+# print coursesNumList
+# print coursesNameList
+coursesDict = dict(zip(coursesNumList, coursesNameList))
+# print coursesDict
+return coursesDict
 
