@@ -32,8 +32,8 @@ def koofers(class_):
 
             i+=1
 
-    print(stats)
-    print ""
+    #print(stats)
+    #print ""
 
     url = 'https://www.koofers.com/university-of-illinois-urbana-champaign-uiuc/' + college + '/' + className + '/professors'
     r = urllib.urlopen(url).read()
@@ -52,5 +52,5 @@ def koofers(class_):
         if(len(gpa) > 0) and (len(name) > 0):
             professors[name[0]] = gpa[0]
 
-    print professors
+    #print professors
     return professors, stats

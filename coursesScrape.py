@@ -31,7 +31,7 @@ br.submit()
 # coursesURL = "http://cs.illinois.edu/courses/full-curriculum"
 coursesURL = "https://courses.illinois.edu/schedule/2016/fall/CS"
 coursesPage = urllib2.urlopen(coursesURL)
-coursesSoup = BeautifulSoup(coursesPage)
+coursesSoup = BeautifulSoup(coursesPage, "html.parser")
 
 # print coursesSoup.prettify()
 # print coursesSoup.title
@@ -52,5 +52,5 @@ for coursesRow in coursesTable.findAll("tr"):
 # print coursesNameList
 coursesDict = dict(zip(coursesNumList, coursesNameList))
 # print coursesDict
-return coursesDict
+
 

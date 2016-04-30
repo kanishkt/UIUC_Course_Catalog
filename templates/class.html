@@ -15,9 +15,29 @@
 <center><h2>{{ query }}</h2></center>
 <div id="locations" style="display: none;">
    {{ data }}</div>
+    <div class="container">
+    <h2>Course Statistics</h2>
+    <div class="panel-group">
+        {% for key, value in stats.iteritems() %}
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ key }}</div>
+            <div class="panel-body">{{ value }}</div>
+        </div>
+        {% endfor %}
+  </div>
+        <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">Professor Stats</div>
+            {% for key, value in profs.iteritems() %}
+            <div class="panel-body">{{ key }}: {{ value }}/5</div>
+            {% endfor %}
+        </div>
+  </div>
+</div>
+
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
-        <h3>Visualizing Data for {{ query }}</h3>
+        <h3>Visualizing Reddit News for {{ query }}</h3>
         </div>
     </div>
 <div class="row">
