@@ -1,3 +1,5 @@
+import csv
+
 __author__ = 'Navya'
 #rate my prof
 
@@ -15,7 +17,8 @@ from bs4 import BeautifulSoup
 
 import cookielib
 
-def koofers(college, className):
+def koofers(className):
+    college = 'cs'
     cj = cookielib.CookieJar()
     br = mechanize.Browser()
     br.set_cookiejar(cj)
@@ -44,7 +47,7 @@ def koofers(college, className):
     professors = {}
     stats = {}
     grades = {}
-
+    grades['name'] = 'cost'
     url = 'https://www.koofers.com/university-of-illinois-urbana-champaign-uiuc/' + college + '/' + className
     r = urllib.urlopen(url).read()
     soup = BeautifulSoup(r, "html.parser")
@@ -130,8 +133,11 @@ def koofers(college, className):
     #print(professors)
     #for i in professors:
      #   print professors[i][0]
+    with open('mycsvfile.csv', 'wb') as f:
+        w = csv.writer(f)
+        w.writerows(grades.items())
 
-    return stats, grades, professors
+    return stats, professors
 
 def main():
     college = 'cs'

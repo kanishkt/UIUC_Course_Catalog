@@ -19,7 +19,7 @@ def getClass(query="CS+225"):
             str = x[3:]
             str2 = dict[x].replace(" ","-")
             str3 = str+"-"+str2
-            profs, stats = koof(str3)
+            stats, profs = koof(str3)
             print profs
             print stats
             break
