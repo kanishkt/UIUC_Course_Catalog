@@ -5,17 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <title>Dashboard</title>
     <script src="http://d3js.org/d3.v2.js"></script>
+    <script src="../static/js/barChart.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
 </head>
 <body>
 <center><h2>{{ query }}</h2></center>
 <div id="locations" style="display: none;">
    {{ data }}</div>
-    <div class="container">
+<div id="locations2" style="display: none;">
+   {{ grades }}</div>
+<div class="container">
+<h3><div id = "title">Grade Breakdown</div></h3>
+<div id = "barchart"></div>
+</div>
+<div class="container">
     <h2>Course Statistics</h2>
     <div class="panel-group">
         {% for key, value in stats.iteritems() %}
@@ -51,7 +60,9 @@
         $(this).addClass('active');
         });
     });
-
+    var otherdata = $('#locations2').text();
+    otherdata = JSON.parse(otherdata);
+    barcreate(otherdata);
      var svg = dimple.newSvg("#chartContainer", 1000, 600);
      var data = $('#locations').text();
      data = JSON.parse(data);
@@ -65,7 +76,7 @@
         var x = myChart.addTimeAxis("x", "datetime", "%Y-%m-%d %H:%M:%S", "%b %d %Y %X");
         x.showGridlines = true;
         x.addOrderRule("Date");
-     x.col;
+        x.col;
         var y = myChart.addMeasureAxis("y", "points");
         myChart.addMeasureAxis("z", "comments");
         var mySeries = myChart.addSeries(["title", "url", "subreddit"], dimple.plot.bubble);

@@ -1,4 +1,7 @@
+import collections
 import csv
+
+from flask import json
 
 __author__ = 'Navya'
 #rate my prof
@@ -47,7 +50,6 @@ def koofers(className):
     professors = {}
     stats = {}
     grades = {}
-    grades['name'] = 'cost'
     url = 'https://www.koofers.com/university-of-illinois-urbana-champaign-uiuc/' + college + '/' + className
     r = urllib.urlopen(url).read()
     soup = BeautifulSoup(r, "html.parser")
@@ -118,13 +120,13 @@ def koofers(className):
 
         gpaTag = c.find_all("span", class_="value")
         gpa = [gpa.text for gpa in gpaTag]
-        if(len(gpa) > 0) and (len(name) > 0):
-            professors[name[0]] = [gpa[0]]
+        if (len(gpa) > 0) and (len(name) > 0):
+            professors[name[0]] = gpa[0]
 
-        for n in nameTag:
-            links = n.find_all('a', href=True)
-            for l in links:
-                professors[name[0]].append('https://www.koofers.com'+l['href'])
+        # for n in nameTag:
+        #     links = n.find_all('a', href=True)
+        #     for l in links:
+        #         professors[name[0]].append('https://www.koofers.com'+l['href'])
                 #link = 'https://www.koofers.com'+l['href']
                 #linkSoup = BeautifulSoup(urllib.urlopen(link).read(), "html.parser")
                 #reviewData = soup.find_all("div", class_ = "right")
@@ -133,11 +135,14 @@ def koofers(className):
     #print(professors)
     #for i in professors:
      #   print professors[i][0]
-    with open('mycsvfile.csv', 'wb') as f:
-        w = csv.writer(f)
-        w.writerows(grades.items())
+    grades = collections.OrderedDict(sorted(grades.items()))
+    grades2 = list()
+    for x in grades:
+        grades2.append({"name": x, "cost": grades[x]})
 
-    return stats, professors
+    data_str = json.dumps(grades2)
+    print data_str
+    return stats, data_str, professors
 
 def main():
     college = 'cs'
@@ -145,9 +150,8 @@ def main():
     #className = '466-introduction-to-bioinformatics'
     #className = "241-system-programming"
 
-    stats, grades, professors = koofers(college, className)
+    stats, professors = koofers(className)
     print(stats)
-    print(grades)
     print(professors)
 
 
