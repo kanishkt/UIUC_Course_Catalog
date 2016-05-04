@@ -1,6 +1,6 @@
 import mechanize
 from bs4 import BeautifulSoup
-import urllib2 
+import urllib2
 import cookielib
 import requests
 
@@ -25,7 +25,7 @@ br.form['email'] = 'sheivingoyal@gmail.com'
 br.form['password'] = 'abhisucks'
 br.submit()
 
-#print br.response().read()
+# print br.response().read()
 
 
 # coursesURL = "http://cs.illinois.edu/courses/full-curriculum"
@@ -37,20 +37,18 @@ coursesSoup = BeautifulSoup(coursesPage, "html.parser")
 # print coursesSoup.title
 # print coursesSoup.title.string
 
-coursesTable = coursesSoup.find('table', {"class":"table table-striped table-bordered table-condensed"})
+coursesTable = coursesSoup.find('table', {"class": "table table-striped table-bordered table-condensed"})
 # print coursesTable
 coursesNumList = []
 coursesNameList = []
 for coursesRow in coursesTable.findAll("tr"):
-	coursesCells = coursesRow.findAll("td")
-	coursesStates = coursesRow.findAll("a")
-	if(len(coursesCells) == 2):
-		coursesNumList.append(str(coursesCells[0].find(text = True).strip()))
-		coursesNameList.append(str(coursesStates[0].find(text = True).strip()))
+    coursesCells = coursesRow.findAll("td")
+    coursesStates = coursesRow.findAll("a")
+    if len(coursesCells) == 2:
+        coursesNumList.append(str(coursesCells[0].find(text=True).strip()))
+        coursesNameList.append(str(coursesStates[0].find(text=True).strip()))
 
 # print coursesNumList
 # print coursesNameList
 coursesDict = dict(zip(coursesNumList, coursesNameList))
 # print coursesDict
-
-

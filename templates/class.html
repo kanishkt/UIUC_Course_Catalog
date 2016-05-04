@@ -21,7 +21,7 @@
 <div id="locations2" style="display: none;">
    {{ grades }}</div>
 <div class="container">
-<h3><div id = "title">Grade Breakdown</div></h3>
+<h2><div id = "title">Grade Breakdown</div></h2>
 <div id = "barchart"></div>
 </div>
 <div class="container">
@@ -148,8 +148,33 @@
 
 
         </script>
+  </div>
     </div>
     </div>
+ <div class="container">
+                <h2>Course Reviews</h2>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                             {% if query == "CS 225" %}
+                            <div class="panel-heading">Sam Davis</div>
+                        <div class="panel-body" style="background: lightgreen;">This course is very informative and I learnt alot. The professors are very nice and helpful</div>
+                            <br>
+                      <div class="panel-heading">Tom Wilson</div>
+                        <div class="panel-body" style="background: indianred;">I found the class to be very hard. The professor isn't very clear in the class</div>
+                         {% elif query == "CS 241" %}
+                            <div class="panel-heading">Shiv Goyal</div>
+                        <div class="panel-body" style="background: indianred;">The course is too hard and I'm not able to understand many concepts</div>
+                            <br>
+                      <div class="panel-heading">Nick Allen</div>
+                        <div class="panel-body" style="background: indianred;">The Professor goes too quickly in the class and the quizzes are too hard.</div>
+                            {% else %}
+                            <div class="panel-heading">Ram Prasad</div>
+                        <div class="panel-body" style="background: lightgreen;">One of the best courses at UIUC. Must take.</div>
+                            <br>
+                      <div class="panel-heading">Ryan Brown</div>
+                        <div class="panel-body" style="background: indianred;">Course gets tricky at many instances and the class is fast paced.</div>
+                             {% endif %}
+                </div>
     </div>
 </body>
 

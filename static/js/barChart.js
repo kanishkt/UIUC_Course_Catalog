@@ -62,7 +62,7 @@ var svg = d3.select("#barchart").append("svg")
       .attr("x",-100)
       .style("text-anchor", "end")
       .style("font-size", "12px")
-      .text("Cost in Dollars");
+      .text("Percentage Score");
 
   svg.selectAll(".bar")
       .data(data)
