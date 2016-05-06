@@ -24,16 +24,21 @@
 <h2><div id = "title">Grade Breakdown</div></h2>
 <div id = "barchart"></div>
 </div>
+<br>
 <div class="container">
     <h2>Course Statistics</h2>
+    <div class="row">
+        <div class="col-md-5">
     <div class="panel-group">
-        {% for key, value in stats.iteritems() %}
         <div class="panel panel-default">
-            <div class="panel-heading">{{ key }}</div>
-            <div class="panel-body">{{ value }}</div>
+            <div class="panel-heading">Class Stats</div>
+             {% for key, value in stats.iteritems() %}
+            <div class="panel-body">{{ key }}: {{ value }}</div>
+            {% endfor %}
         </div>
-        {% endfor %}
   </div>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
         <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading">Professor Stats</div>
@@ -42,15 +47,13 @@
             {% endfor %}
         </div>
   </div>
+        </div>
+</div>
 </div>
 
-<div class="row">
-    <div class="col-md-5 col-md-offset-3">
-        <h3>Visualizing Reddit News for {{ query }}</h3>
-        </div>
-    </div>
-<div class="row">
-    <div class="col-md-2 col-md-offset-2">
+<div class="container">
+<h2>Visualizing Reddit News for {{ query }}</h2>
+    <br>
         <div id="chartContainer">
     <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
     <script type="text/javascript">
@@ -63,7 +66,7 @@
     var otherdata = $('#locations2').text();
     otherdata = JSON.parse(otherdata);
     barcreate(otherdata);
-     var svg = dimple.newSvg("#chartContainer", 1000, 600);
+     var svg = dimple.newSvg("#chartContainer", 800, 600);
      var data = $('#locations').text();
      data = JSON.parse(data);
 
@@ -148,11 +151,12 @@
 
 
         </script>
-  </div>
     </div>
-    </div>
+</div>
+<br>
  <div class="container">
                 <h2>Course Reviews</h2>
+                <br>
                     <div class="panel-group">
                         <div class="panel panel-default">
                              {% if query == "CS 225" %}
